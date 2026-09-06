@@ -42,16 +42,14 @@ class CoreTests(unittest.TestCase):
             self.assertTrue((target / "tests").is_dir())
 
     def test_cli_agent_add_dispatches_correctly(self) -> None:
-        # Regression: --command must not overwrite the top-level subcommand.
+        # Regression: the --command option must not overwrite the top-level subcommand.
         import tilki_ai_os.cli as cli
         original_add = cli.add_agent
-        captured: dict[str, str] = {}
-
-        def fake_add(name: str, command: str) -> dict[str, str]:
+        captured = {}
+        def fake_add(name: str, command: str, **kwargs: object):
             captured["name"] = name
             captured["command"] = command
             return {"name": name}
-
         cli.add_agent = fake_add
         try:
             out = StringIO()

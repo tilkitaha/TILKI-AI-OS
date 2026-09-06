@@ -9,13 +9,16 @@
 - AI project scaffolding
 - Automated tests and CI
 
-## v0.0.2 — Runtime
+## v0.0.2 — Agent Runtime ✅
 
 - Start/stop supervised agent processes
-- Process logs and exit status
-- Resource limits
-- Project-local configuration
+- Persistent PID, child PID and lifecycle state
+- Captured stdout/stderr logs and exit status
+- Runtime duration tracking
+- Optional POSIX memory and CPU-time limits
+- Project/agent working-directory configuration
 - Structured JSON output for UI integration
+- Regression and lifecycle tests
 
 ## v0.0.3 — Model Manager
 

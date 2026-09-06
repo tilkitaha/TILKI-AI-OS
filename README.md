@@ -4,14 +4,14 @@
 
 TILKI AI OS is an AI-native developer operating environment: a Linux-first control layer for local models, AI agents, GPU resources, datasets, evaluation and deployment.
 
-> Status: **v0.0.1 — Core CLI milestone**. This is not yet a bootable Linux distribution. The project is intentionally starting as a real developer runtime before growing into a desktop and installable OS image.
+> Status: **v0.0.2 — Agent Runtime milestone**. This is not yet a bootable Linux distribution. The project is intentionally starting as a real developer runtime before growing into a desktop and installable OS image.
 
 ## What works now
 
 - `tilki status` — system health summary
 - `tilki gpu` — NVIDIA GPU / VRAM / utilization via `nvidia-smi`
 - `tilki model list` — discovers local Ollama models
-- `tilki agent add|list|remove` — persistent local agent registry
+- `tilki agent add|run|stop|status|logs|list|remove` — supervised persistent agent runtime
 - `tilki project init` — scaffolds AI Agent, RAG, LLM, Vision, RL and multi-agent workspaces
 - Zero required runtime dependencies beyond Python 3.10+
 
@@ -35,7 +35,11 @@ tilki gpu
 tilki model list
 
 tilki agent add researcher --command "python researcher.py"
-tilki agent list
+tilki agent run researcher
+tilki agent status researcher
+tilki agent logs researcher --lines 100
+tilki agent stop researcher
+tilki --json agent list
 
 tilki project init gridmind-agent --type agent
 tilki project init docs-rag --type rag
@@ -50,7 +54,7 @@ TILKI AI OS will evolve through four layers:
 3. **Command Center** — desktop UI with live GPU/process/model/agent observability and AI System Graph.
 4. **Distribution** — Linux-based installable image with NVIDIA/AMD tooling and a first-boot developer experience.
 
-See [`docs/architecture.md`](docs/architecture.md) and [`docs/roadmap.md`](docs/roadmap.md).
+See [`docs/architecture.md`](docs/architecture.md), [`docs/runtime.md`](docs/runtime.md) and [`docs/roadmap.md`](docs/roadmap.md).
 
 ## Philosophy
 
