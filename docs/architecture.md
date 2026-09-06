@@ -26,11 +26,17 @@ The core intentionally stays close to Python's standard library while its contra
 
 - `system.py` — host telemetry
 - `gpu.py` — NVIDIA discovery through `nvidia-smi`
-- `models.py` — Ollama local model discovery
+- `models.py` — Ollama lifecycle/API client, health checks, VRAM-fit estimation and Hugging Face metadata
 - `agents.py` — persistent definitions, runtime state, logs and lifecycle control
 - `supervisor.py` — detached process supervisor and optional POSIX resource limits
 - `projects.py` — AI project scaffolding
 - `cli.py` — `tilki` command surface and JSON output
+
+## Model runtime
+
+The v0.0.3 model layer talks directly to Ollama's HTTP API using the Python standard library. It supports installed/running discovery, pull, show, generate/preload, unload and delete operations. A model inspection combines Ollama metadata with GPU telemetry; when Ollama reports `size_vram`, TILKI labels it measured, otherwise the fit result is explicitly an estimate.
+
+Hugging Face integration is metadata-only in this milestone and does not download weights or execute remote code.
 
 ## Agent runtime
 

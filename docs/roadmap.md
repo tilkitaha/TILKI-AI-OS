@@ -20,12 +20,15 @@
 - Structured JSON output for UI integration
 - Regression and lifecycle tests
 
-## v0.0.3 — Model Manager
+## v0.0.3 — Model Manager ✅
 
-- Ollama pull/run/remove
-- Hugging Face model metadata
-- VRAM fit estimation
-- Local inference health checks
+- Ollama pull/list/run/preload/unload/remove
+- Installed and currently-loaded model inspection
+- Hugging Face Hub model metadata
+- NVIDIA VRAM fit estimation with measured/estimated confidence
+- Ollama API health and optional real inference health check
+- `OLLAMA_HOST`, optional cloud API-key support and structured JSON output
+- Full fake-API contract tests
 
 ## v0.0.4 — Secrets Vault
 
