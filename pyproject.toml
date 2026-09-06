@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tilki-ai-os"
+version = "0.0.1"
+description = "AI-native developer operating environment for building, running and observing intelligent systems."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "TILKI LAB"}]
+keywords = ["ai", "developer-tools", "agents", "gpu", "llm", "operating-system"]
+
+[project.scripts]
+tilki = "tilki_ai_os.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
