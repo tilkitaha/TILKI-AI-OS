@@ -4,13 +4,15 @@
 
 TILKI AI OS is an AI-native developer operating environment: a Linux-first control layer for local models, AI agents, GPU resources, datasets, evaluation and deployment.
 
-> Status: **v0.0.2 — Agent Runtime milestone**. This is not yet a bootable Linux distribution. The project is intentionally starting as a real developer runtime before growing into a desktop and installable OS image.
+> Status: **v0.0.3 — Model Manager milestone**. This is not yet a bootable Linux distribution. The project is intentionally starting as a real developer runtime before growing into a desktop and installable OS image.
 
 ## What works now
 
 - `tilki status` — system health summary
 - `tilki gpu` — NVIDIA GPU / VRAM / utilization via `nvidia-smi`
-- `tilki model list` — discovers local Ollama models
+- `tilki model pull|run|stop|remove|inspect|list|running|health` — manages local Ollama models
+- `tilki model hf inspect` — reads Hugging Face Hub model metadata
+- Model inspection includes NVIDIA VRAM-fit estimation
 - `tilki agent add|run|stop|status|logs|list|remove` — supervised persistent agent runtime
 - `tilki project init` — scaffolds AI Agent, RAG, LLM, Vision, RL and multi-agent workspaces
 - Zero required runtime dependencies beyond Python 3.10+
@@ -32,7 +34,14 @@ On Windows PowerShell, activate with `.venv\\Scripts\\Activate.ps1`.
 ```bash
 tilki status
 tilki gpu
+tilki model health
 tilki model list
+tilki model pull qwen3:4b
+tilki model inspect qwen3:4b
+tilki model run qwen3:4b
+tilki model run qwen3:4b --prompt "Explain RAG in one sentence."
+tilki model stop qwen3:4b
+tilki model hf inspect Qwen/Qwen3-4B
 
 tilki agent add researcher --command "python researcher.py"
 tilki agent run researcher
@@ -54,7 +63,7 @@ TILKI AI OS will evolve through four layers:
 3. **Command Center** — desktop UI with live GPU/process/model/agent observability and AI System Graph.
 4. **Distribution** — Linux-based installable image with NVIDIA/AMD tooling and a first-boot developer experience.
 
-See [`docs/architecture.md`](docs/architecture.md), [`docs/runtime.md`](docs/runtime.md) and [`docs/roadmap.md`](docs/roadmap.md).
+See [`docs/architecture.md`](docs/architecture.md), [`docs/runtime.md`](docs/runtime.md), [`docs/models.md`](docs/models.md) and [`docs/roadmap.md`](docs/roadmap.md).
 
 ## Philosophy
 
