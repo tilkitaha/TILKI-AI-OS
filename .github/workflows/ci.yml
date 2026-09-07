@@ -20,3 +20,9 @@ jobs:
       - run: tilki --version
       - run: tilki status
       - run: tilki --json agent list
+      - name: Validate Command Center demo
+        run: |
+          test -f demo/index.html
+          test -f demo/styles.css
+          test -f demo/app.js
+          node --check demo/app.js
