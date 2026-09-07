@@ -6,6 +6,21 @@ TILKI AI OS is an AI-native developer operating environment: a Linux-first contr
 
 > Status: **v0.0.3 — Model Manager milestone**. This is not yet a bootable Linux distribution. The project is intentionally starting as a real developer runtime before growing into a desktop and installable OS image.
 
+## Command Center demo
+
+A functional browser sandbox now lives in [`demo/`](demo/). It shares one state model across the model manager, agent runtime, GPU/VRAM display, event stream and AI terminal.
+
+Run it locally:
+
+```bash
+cd demo
+python -m http.server 8080
+```
+
+Then open `http://localhost:8080`.
+
+The browser build is explicitly a sandbox: it does not pretend to read the visitor's real GPU, Ollama service, processes or filesystem. The real host integration remains in the TILKI CLI/runtime.
+
 ## What works now
 
 - `tilki status` — system health summary
