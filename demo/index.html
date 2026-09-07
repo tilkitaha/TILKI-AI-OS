@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#070b12" />
+  <title>TILKI AI OS — Command Center Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">T</div>
+      <div>
+        <div class="brand-title">TILKI AI OS</div>
+        <div class="brand-sub">COMMAND CENTER · v0.0.3</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <span class="badge sandbox">SANDBOX DEMO</span>
+      <span class="badge online"><span class="dot"></span>RUNTIME ONLINE</span>
+      <button id="resetBtn" class="ghost">Reset demo</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero panel">
+      <div>
+        <p class="eyebrow">AI-NATIVE DEVELOPER OPERATING ENVIRONMENT</p>
+        <h1>Build. Run. Observe.<br><span>Deploy Intelligence.</span></h1>
+        <p class="hero-copy">A functional browser sandbox for the TILKI AI OS runtime. Start agents, load models, inspect GPU pressure, and use the terminal exactly like the CLI surface.</p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span>MODELS</span><strong id="modelCount">0</strong><small>installed</small></div>
+        <div class="stat"><span>AGENTS</span><strong id="agentCount">0</strong><small>registered</small></div>
+        <div class="stat"><span>EVENTS</span><strong id="eventCount">0</strong><small>this session</small></div>
+      </div>
+    </section>
+
+    <section class="grid telemetry-grid">
+      <article class="panel metric-card">
+        <div class="panel-head"><span>GPU 0</span><span id="gpuStatus" class="status good">NVIDIA READY</span></div>
+        <div class="metric-main"><strong id="gpuUsed">0.0</strong><span>/ 24.0 GB VRAM</span></div>
+        <div class="bar"><div id="gpuBar" class="bar-fill"></div></div>
+        <div class="metric-foot"><span id="gpuUtil">0% util</span><span id="gpuTemp">42°C</span></div>
+      </article>
+
+      <article class="panel metric-card">
+        <div class="panel-head"><span>HOST</span><span class="status good">HEALTHY</span></div>
+        <div class="host-row"><span>CPU</span><strong id="cpuValue">18%</strong></div>
+        <div class="host-row"><span>RAM</span><strong id="ramValue">12.8 / 32 GB</strong></div>
+        <div class="host-row"><span>OLLAMA</span><strong class="accent">API OK</strong></div>
+      </article>
+
+      <article class="panel metric-card">
+        <div class="panel-head"><span>AI RUNTIME</span><span class="status good">ACTIVE</span></div>
+        <div class="host-row"><span>Loaded models</span><strong id="loadedCount">0</strong></div>
+        <div class="host-row"><span>Running agents</span><strong id="runningCount">0</strong></div>
+        <div class="host-row"><span>CLI</span><strong class="accent">tilki 0.0.3</strong></div>
+      </article>
+    </section>
+
+    <section class="workspace-grid">
+      <article class="panel workspace">
+        <div class="panel-head">
+          <div><span>MODEL MANAGER</span><small>Ollama-compatible sandbox</small></div>
+          <button id="pullModelBtn" class="primary">+ Pull model</button>
+        </div>
+        <div id="modelList" class="stack"></div>
+      </article>
+
+      <article class="panel workspace">
+        <div class="panel-head">
+          <div><span>AGENT RUNTIME</span><small>Supervised lifecycle</small></div>
+          <button id="addAgentBtn" class="primary">+ Register agent</button>
+        </div>
+        <div id="agentList" class="stack"></div>
+      </article>
+    </section>
+
+    <section class="terminal-grid">
+      <article class="panel terminal-panel">
+        <div class="panel-head"><span>AI TERMINAL</span><span class="mono muted">tilki@command-center</span></div>
+        <div id="terminalOutput" class="terminal-output" aria-live="polite"></div>
+        <form id="terminalForm" class="terminal-form">
+          <span class="prompt">›</span>
+          <input id="terminalInput" autocomplete="off" spellcheck="false" placeholder="Try: model run qwen3:4b" />
+          <button class="terminal-run" type="submit">RUN</button>
+        </form>
+        <div class="quick-commands">
+          <button data-cmd="status">status</button>
+          <button data-cmd="gpu">gpu</button>
+          <button data-cmd="model list">model list</button>
+          <button data-cmd="agent list">agent list</button>
+          <button data-cmd="help">help</button>
+        </div>
+      </article>
+
+      <article class="panel events-panel">
+        <div class="panel-head"><span>EVENT STREAM</span><button id="clearEventsBtn" class="ghost small">Clear</button></div>
+        <div id="eventStream" class="event-stream"></div>
+      </article>
+    </section>
+  </main>
+
+  <dialog id="modelDialog" class="modal">
+    <form method="dialog" id="modelForm">
+      <div class="modal-head"><h3>Pull model</h3><button value="cancel">×</button></div>
+      <label>Model name<input id="modelName" value="qwen3:4b" required /></label>
+      <label>Estimated VRAM (GB)<input id="modelVram" type="number" min="0.5" max="24" step="0.1" value="4.2" required /></label>
+      <div class="modal-actions"><button value="cancel" class="ghost">Cancel</button><button id="confirmModel" value="default" class="primary">Pull</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="agentDialog" class="modal">
+    <form method="dialog" id="agentForm">
+      <div class="modal-head"><h3>Register agent</h3><button value="cancel">×</button></div>
+      <label>Agent name<input id="agentName" value="researcher" required /></label>
+      <label>Command<input id="agentCommand" value="python researcher.py" required /></label>
+      <div class="modal-actions"><button value="cancel" class="ghost">Cancel</button><button id="confirmAgent" value="default" class="primary">Register</button></div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
